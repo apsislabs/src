@@ -28,9 +28,11 @@ Or install it yourself as:
 
 ## Usage
 
-In `environment.rb`, `require` this gem and then add `SimpleRailsConfigurator::configure!('PATH_TO_CUSTOM_CONFIG_DIR')`. The path should be appropriately specified from the Rails root path. If you don't pass an argument to `configure!`, the default path is `"#{Rails.root}/config/custom"`.
+In `environment.rb`, `require` this gem and then add `SimpleRailsConfigurator::configure!('PATH_TO_CUSTOM_CONFIG_DIR')`. The path should be appropriately specified from the Rails root path. All YML/YAML files in the given directory (and subdirectories) will be injected into the Rails configuration object. If you don't pass an argument to `configure!`, the default path is `"#{Rails.root}/config/custom"`.
 
-To create a local override (parsed only when `Rails.env == 'local'`), for the file `foo_config.yml`, create `foo_config.yml.override`. Any values set in this file will override those in `foo_config.yml`.
+To create a local override (parsed only when `Rails.env == 'local'`), for the file `foo_config.yml`, create `foo_config.yml.override` next to it. Any values set in this file will override those in `foo_config.yml`.
+
+Access the imported configurations at `Rails.application.config.filename['config_var']`. Note that at the moment only the base filename is used, so if you have `config/custom/foo.yml` and `config/custom/bar/foo.yml`, only one of them will take effect.
 
 ## Development
 
