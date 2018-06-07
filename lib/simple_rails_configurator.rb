@@ -8,16 +8,16 @@ module SimpleRailsConfigurator
     files.each{ |file| configure_from_file(file) }
   end
 
-  def configure_from_file(filename)
+  def self.configure_from_file(filename)
     # TODO: Pass down a path prefix and implement "namespaces" based on location?
-    yaml = load_config_yaml(file)
+    yaml = load_config_yaml(filename)
 
     if Rails.env.local?
-      override = load_config_yaml("#{file}.override")
+      override = load_config_yaml("#{filename}.override")
       yaml.merge!(override)
     end
 
-    name = File.basename(file).rpartition('.')[0]
+    name = File.basename(filename).rpartition('.')[0]
     Rails.application.config.send("#{name}=".to_sym, yaml)
   end
 
