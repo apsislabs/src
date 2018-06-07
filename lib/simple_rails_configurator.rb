@@ -12,7 +12,7 @@ module SimpleRailsConfigurator
     # TODO: Pass down a path prefix and implement "namespaces" based on location?
     yaml = load_config_yaml(filename)
 
-    if Rails.env.local?
+    if is_local?
       override = load_config_yaml("#{filename}.override")
       yaml.merge!(override)
     end
@@ -30,5 +30,9 @@ module SimpleRailsConfigurator
       return yaml
     end
     return {}
+  end
+
+  def self.is_local?
+    Rails.env.development? || Rails.env.local?
   end
 end
