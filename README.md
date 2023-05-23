@@ -15,7 +15,7 @@ Features:
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'simple_rails_configurator', :git => 'https://bitbucket.org/apsislabs/simple_rails_configurator.git'
+gem 'simple_rails_configurator'
 ```
 
 And then execute:
@@ -24,7 +24,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install simple_rails_configurator , :git => 'https://bitbucket.org/apsislabs/simple_rails_configurator.git'
+    $ gem install simple_rails_configurator
 
 ## Usage
 
